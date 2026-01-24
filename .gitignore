@@ -1,0 +1,9 @@
+#/Users/sergiovinicio/PycharmProjects/safetrade_client_service/.gitignore
+
+*.sqlite3
+.idea/
+__pycache__/
+*.pyc
+.venv/
+.env.DS_Store
+**/ .DS_Store
