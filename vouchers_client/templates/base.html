@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %} SafaTrade {% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+{#    <!-- notifications -->#}
+{#    {% if success_message %}#}
+{#        <div class="alert alert-success">{{ success_message }}</div>#}
+{#    {% endif %}#}
+{##}
+{#    {% if error_message %}#}
+{#        <div class="alert alert-danger">{{ error_message }}</div>#}
+{#    {% endif %}#}
+
+     <!-- dynamic content -->
+     <main class="container">
+        {% block content %}
+
+        {% endblock %}
+     </main>
+
+     <footer class="text-center bg-body">
+        <div class="container py-4 py-lg-5">
+            <ul class="list-inline">
+                <li class="list-inline-item me-4">
+                    <a class="link-body-emphasis" href="https://github.com/sergio-oliveira-br">GitHub</a>
+                </li>
+
+                <li class="list-inline-item me-4">
+                    <a class="link-body-emphasis" href="https://www.linkedin.com/in/sergio-oliveira-063613163/">Linkedin</a>
+                </li>
+            </ul>
+            <p class="text-body mb-0"><strong>National College of Ireland - M.Sc. in Cloud Computing</strong></p>
+            <p class="text-body mb-0"><strong>Sergio Vinicio da Silva Oliveira - x23170981@student.ncirl.ie</strong></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
