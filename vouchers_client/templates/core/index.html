@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} SafeTrade | Explore {% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="jumbotron p-5 mb-4 rounded-3 border bg-light shadow-sm">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="display-5 fw-bold text-dark">Get Your Vouchers</h1>
+                    <p class="lead text-muted">Claim exclusive vouchers for local services in Dublin and beyond.</p>
+
+                     <ul class="list-unstyled">
+                         <li><i class="bi bi-shield-lock"></i> <b>Secure:</b> Transactions protected by AWS IAM.</li>
+                         <li><i class="bi bi-lightning"></i> <b>Fast:</b> Serverless processing (Lambda).</li>
+                         <li><i class="bi bi-geo-alt"></i> <b>Local:</b> Region-based voucher delivery.</li>
+                     </ul>
+
+                    <div class="d-flex gap-2 mt-4">
+                        <a class="btn btn-primary btn-lg px-4"  role="button">Buy Vouchers</a>
+                        <a class="btn btn-outline-secondary btn-lg px-4" href="" role="button">My Wallet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
