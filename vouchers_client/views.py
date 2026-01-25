@@ -1,5 +1,17 @@
 from django.shortcuts import render
 
+from vouchers_client.models import Voucher
+
+
 # Create your views here.
 def index_page(request):
     return render(request, 'core/index.html')
+
+def showroom(request):
+
+    vouchers_table_list = Voucher.list_vouchers_by_location('BR')
+
+    context = {
+        'vouchers_table_list': vouchers_table_list,
+    }
+    return render(request, 'core/showroom.html', context)
