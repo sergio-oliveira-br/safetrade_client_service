@@ -42,7 +42,7 @@
                         <td><i class="bi bi-ethereum"></i> {{ v.voucher_location }}</td>
                         <td>
                             <button
-                                class="btn btn-dark btn-sm buy-btn">
+                                class="btn btn-dark btn-sm buy-btn" id="buy_voucher" type="button">
                                 Buy Now
                             </button>
                         </td>
@@ -56,4 +56,5 @@
     </div>
     {% load static %}
     <script src="{% static 'vouchers_client/js/web3_wallet_handler.js' %}"></script>
+    <script src="{% static 'vouchers_client/js/web3_transaction.js' %}"></script>
 {% endblock %}
