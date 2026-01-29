@@ -9,9 +9,12 @@ def index_page(request):
 
 def showroom(request):
 
-    vouchers_table_list = Voucher.list_vouchers_by_location('BR')
+    vouchers_table_list = Voucher.list_vouchers_by_status('Active')
 
     context = {
         'vouchers_table_list': vouchers_table_list,
     }
     return render(request, 'core/showroom.html', context)
+
+def payment_processing_view(request):
+    return render(request, 'core/payment_processing.html')
