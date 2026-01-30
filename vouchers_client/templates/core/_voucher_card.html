@@ -1,0 +1,52 @@
+<div class="row row justify-content-center">
+    <div class="col-auto">
+        <div class="card shadow-sm">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">Voucher: {{ voucher.voucher_id }}</h5>
+            </div>
+
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <small class="text-muted d-block">Description</small>
+                        <strong>{{ voucher.voucher_description }}</strong>
+                    </div>
+                    <div class="col-6 text-end">
+                        <small class="text-muted d-block">Price</small>
+                        <strong class="text-primary">{{ voucher.voucher_price }} ETH</strong>
+                    </div>
+                </div>
+
+                {% if voucher.voucher_status == 'Active' %}
+                    <div class="d-grid gap-2">
+                        <button id="buy_voucher"
+                                data-price="{{ voucher.voucher_price }}"
+                                data-id="{{ voucher.voucher_id }}"
+                                class="btn btn-primary btn-lg">
+                            Pay with MetaMask
+                        </button>
+                    </div>
+                {% endif %}
+
+                <hr>
+
+                <div class="timeline-log">
+                    <h6 class="text-muted">Current Status</h6>
+                    <div class="step {% if voucher.voucher_status %}completed{% endif %}">
+                        <i class="bi bi-check-circle"></i> Item selected
+                    </div>
+
+                    <div class="step {% if voucher.voucher_tx_hash %}completed{% endif %}">
+                        <i class="bi bi-cpu"></i>
+                        Transaction:
+                        {% if voucher.voucher_tx_hash %}
+                            <a href="https://sepolia.etherscan.io/tx/{{ voucher.voucher_tx_hash }}" target="_blank">Check on Etherscan</a>
+                        {% else %}
+                            <span class="text-muted">Waiting for payment...</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
