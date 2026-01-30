@@ -16,8 +16,8 @@ class Voucher(models.Model):
         return dynamodb.Table(cls._TABLE_NAME)
 
     @staticmethod
-    def list_vouchers_by_location(location_code):
+    def list_vouchers_by_status(status_code):
         table = Voucher._get_table()
-        response = table.query(KeyConditionExpression=Key('voucher_location').eq(location_code))
+        response = table.query(KeyConditionExpression=Key('voucher_status').eq(status_code))
 
         return response.get('Items', [])
