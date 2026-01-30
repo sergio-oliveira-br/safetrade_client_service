@@ -18,7 +18,7 @@ def showroom(request):
 
 def view_voucher_checkout(request, voucher_id):
 
-    voucher = Voucher.voucher_by_id(voucher_id)
+    voucher = Voucher.find_voucher_by_id(voucher_id)
 
 
     context = {

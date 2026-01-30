@@ -23,7 +23,7 @@ class Voucher(models.Model):
         return response.get('Items', [])
 
     @staticmethod
-    def voucher_by_id(voucher_id):
+    def find_voucher_by_id(voucher_id):
 
         table = Voucher._get_table()
 
