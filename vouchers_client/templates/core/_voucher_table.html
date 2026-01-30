@@ -16,10 +16,10 @@
                     <td><strong>{{ v.voucher_description }}</strong></td>
                     <td><i class="bi bi-ethereum"></i> {{ v.voucher_price }}</td>
                     <td>
-                        <button
-                            class="btn btn-dark btn-sm buy-btn" id="buy_voucher" type="button">
+                        <a
+                            class="btn btn-dark btn-sm buy-btn" href="{% url 'voucher_checkout' v.voucher_id %}" role="button">
                             Buy Now
-                        </button>
+                        </a>
                     </td>
                 </tr>
                 {% endfor %}
