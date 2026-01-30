@@ -21,3 +21,12 @@ class Voucher(models.Model):
         response = table.query(KeyConditionExpression=Key('voucher_status').eq(status_code))
 
         return response.get('Items', [])
+
+    @staticmethod
+    def voucher_by_id(voucher_id):
+
+        table = Voucher._get_table()
+
+        response = table.get_item(Key={'voucher_status': 'Active' , 'voucher_id': voucher_id})
+
+        return response.get('Item', [])
