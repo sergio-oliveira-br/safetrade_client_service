@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from vouchers_client.models import Voucher
 
@@ -16,5 +16,13 @@ def showroom(request):
     }
     return render(request, 'core/showroom.html', context)
 
-def payment_processing_view(request):
-    return render(request, 'core/payment_processing.html')
+def view_voucher_checkout(request, voucher_id):
+
+    voucher = Voucher.voucher_by_id(voucher_id)
+
+
+    context = {
+        'voucher': voucher
+    }
+
+    return render(request, 'core/voucher_checkout.html', context)
