@@ -31,6 +31,8 @@ const is_connected = metamask_provider.isConnected();
 
                 alert("tx_hash: " + tx_hash)
 
+                await sendHashToDjango(tx_hash)
+
             } catch(error) {
                 console.error(error)
                 alert("Erro: " +  error.message)
