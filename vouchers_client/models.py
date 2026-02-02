@@ -1,7 +1,11 @@
+import json
+
 from django.db import models
 from boto3.dynamodb.conditions import Key
 
 import boto3
+from django.http import JsonResponse
+
 
 # Create your models here.
 class Voucher(models.Model):
@@ -24,12 +28,11 @@ class Voucher(models.Model):
 
     @staticmethod
     def find_voucher_by_id(voucher_id):
-
         table = Voucher._get_table()
-
         response = table.get_item(Key={'voucher_status': 'Active' , 'voucher_id': voucher_id})
-
         return response.get('Item', [])
+
+
     @staticmethod
     def update_tx_hash(request):
 
