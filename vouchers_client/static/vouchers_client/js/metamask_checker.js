@@ -6,4 +6,5 @@ function is_metamask_installed() {
         alert("MetaMask not detected! Please install the extension.");
         return false
     }
+    return true
 }
