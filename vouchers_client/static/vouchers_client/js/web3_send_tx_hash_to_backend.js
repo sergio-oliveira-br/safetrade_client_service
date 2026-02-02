@@ -16,6 +16,9 @@ async function sendHashToDjango(tx_hash) {
                  // 'voucher_id': voucher_id
             })
         });
+        if (response.ok) {
+            console.log("Voucher has been updated")
+        }
 
         if (!response.ok) {
             console.error(response.json())
