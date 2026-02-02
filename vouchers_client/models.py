@@ -30,3 +30,16 @@ class Voucher(models.Model):
         response = table.get_item(Key={'voucher_status': 'Active' , 'voucher_id': voucher_id})
 
         return response.get('Item', [])
+    @staticmethod
+    def update_tx_hash(request):
+
+        table = Voucher._get_table()
+        response = table.update_item(Key={
+            'voucher_status': 'Active' ,
+            'voucher_id':'A9003F19'},
+            UpdateExpression='SET tx_hash = :val',
+            ExpressionAttributeValues={
+                ':val': 'HiSergio2023'
+            }
+        )
+        return response
