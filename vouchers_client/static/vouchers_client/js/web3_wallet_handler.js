@@ -3,18 +3,15 @@
 const btn  = document.getElementById('connectButton');
 const statusSpan = document.getElementById('walletAddress');
 
-// 2. Função principal de conexão
+
 async function connect() {
 
-    // We check if MetaMask is installed
-    if (typeof window.ethereum !== 'undefined') {
-
+    if(is_metamask_installed()) {
         try {
-
             btn.disabled = true;
             btn.innerText = "Connecting...";
 
-            // connect to MetaMask poopup
+            // connect to MetaMask popup
             const accounts = await window.ethereum.request({
             method: 'eth_requestAccounts'
             });
@@ -29,14 +26,15 @@ async function connect() {
 
             alert("Connected successfully! \nAccount: " + account);
 
+            return true
+
         } catch (error) {
          alert("User refused the connection." + error);
             btn.disabled = false;
             btn.innerText = "Wallet Connected ";
             console.error("Error :", error);
+            return false
         }
-    } else {
-    alert("MetaMask not detected! Please install the extension.");
     }
 }
 
