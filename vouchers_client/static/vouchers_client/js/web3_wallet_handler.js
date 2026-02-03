@@ -1,5 +1,7 @@
 // vouchers_client/static/vouchers_client/js/web3_wallet_handler.js
 
+window.onload = is_connected;
+
 const btn  = document.getElementById('connectButton');
 const statusSpan = document.getElementById('walletAddress');
 
