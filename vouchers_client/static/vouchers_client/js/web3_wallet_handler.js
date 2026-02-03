@@ -19,23 +19,17 @@ async function is_connected() {
 }
 
 
-async function connect() {
 async function connectToMetaMask() {
 
     if(is_metamask_installed()) {
         try {
-            btn.disabled = true;
-            btn.innerText = "Connecting...";
-
-            // connect to MetaMask popup
             const accounts = await window.ethereum.request({
-            method: 'eth_requestAccounts'
+                method: 'eth_requestAccounts'
             });
 
+            btn.innerText = "Connecting...";
             const account = accounts[0];
-
             statusSpan.innerText = "Wallet: " + account;
-
             btn.classList.remove('btn-primary');
             btn.classList.add('btn-success');
             btn.innerText = "Wallet Connected";
@@ -54,4 +48,4 @@ async function connectToMetaMask() {
     }
 }
 
-btn.onclick = connect;btn.onclick = connectToMetaMask;
+btn.onclick = connectToMetaMask;
