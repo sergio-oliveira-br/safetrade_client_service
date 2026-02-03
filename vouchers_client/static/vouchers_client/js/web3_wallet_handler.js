@@ -5,6 +5,7 @@ const statusSpan = document.getElementById('walletAddress');
 
 
 async function connect() {
+async function connectToMetaMask() {
 
     if(is_metamask_installed()) {
         try {
@@ -38,4 +39,4 @@ async function connect() {
     }
 }
 
-btn.onclick = connect;
+btn.onclick = connect;btn.onclick = connectToMetaMask;
