@@ -3,6 +3,19 @@
 const btn  = document.getElementById('connectButton');
 const statusSpan = document.getElementById('walletAddress');
 
+async function is_connected() {
+
+    const accounts = await window.ethereum.request({
+        method: 'eth_requestAccounts'
+    });
+
+    const account = accounts[0];
+    statusSpan.innerText = "Wallet: " + account;
+    btn.disabled = true;
+    btn.innerText = "Wallet Connected";
+    return true
+}
+
 
 async function connect() {
 async function connectToMetaMask() {
