@@ -47,9 +47,11 @@ class Voucher(models.Model):
         response = table.update_item(Key={
             'voucher_id':voucher_id },
             UpdateExpression='SET '
-                             'voucher_tx_hash = :val_tx_hash',
+                             'voucher_tx_hash = :val_tx_hash,'
+                             'voucher_status = :val_status',
             ExpressionAttributeValues={
-                ':val_tx_hash': tx_hash
-            }
+                ':val_tx_hash': tx_hash,
+                ':val_status': 'Pending'
+            },
         )
         return response
