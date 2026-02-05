@@ -22,7 +22,10 @@ class Voucher(models.Model):
     @staticmethod
     def list_vouchers_by_status(status_code):
         table = Voucher._get_table()
-        response = table.query(KeyConditionExpression=Key('voucher_status').eq(status_code))
+        response = table.query(
+            IndexName='voucher_status_index',
+            KeyConditionExpression=Key('voucher_status').eq('Active')
+        )
 
         return response.get('Items', [])
 
