@@ -36,13 +36,18 @@ class Voucher(models.Model):
     @staticmethod
     def update_tx_hash(request):
 
+        data = json.loads(request)
+        tx_hash = data.get('tx_hash')
+        voucher_id = data.get('voucher_id')
+
         table = Voucher._get_table()
         response = table.update_item(Key={
             'voucher_status': 'Active' ,
-            'voucher_id':'A9003F19'},
-            UpdateExpression='SET tx_hash = :val',
+            'voucher_id':voucher_id },
+            UpdateExpression='SET '
+                             'tx_hash = :val',
             ExpressionAttributeValues={
-                ':val': 'HiSergio2023'
+                ':val': tx_hash
             }
         )
         return response
