@@ -3,6 +3,7 @@
 async function sendHashToDjango(tx_hash) {
 
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const voucher_id = document.getElementById('buy_voucher').getAttribute('data-id');
 
     try {
         const response = await fetch('/update_voucher_tx_hash/', {
@@ -13,7 +14,7 @@ async function sendHashToDjango(tx_hash) {
             },
             body: JSON.stringify({
                 'tx_hash': tx_hash,
-                 // 'voucher_id': voucher_id
+                'voucher_id': voucher_id
             })
         });
         if (response.ok) {
