@@ -32,8 +32,8 @@ class Voucher(models.Model):
     @staticmethod
     def find_voucher_by_id(voucher_id):
         table = Voucher._get_table()
-        response = table.get_item(Key={'voucher_status': 'Active' , 'voucher_id': voucher_id})
-        return response.get('Item', [])
+        response = table.get_item(Key={'voucher_id': voucher_id})
+        return response.get('Item', None)
 
 
     @staticmethod
