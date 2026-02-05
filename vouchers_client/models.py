@@ -45,7 +45,6 @@ class Voucher(models.Model):
 
         table = Voucher._get_table()
         response = table.update_item(Key={
-            'voucher_status': 'Active' ,
             'voucher_id':voucher_id },
             UpdateExpression='SET '
                              'voucher_tx_hash = :val_tx_hash',
