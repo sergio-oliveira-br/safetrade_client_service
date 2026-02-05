@@ -45,9 +45,9 @@ class Voucher(models.Model):
             'voucher_status': 'Active' ,
             'voucher_id':voucher_id },
             UpdateExpression='SET '
-                             'tx_hash = :val',
+                             'voucher_tx_hash = :val_tx_hash',
             ExpressionAttributeValues={
-                ':val': tx_hash
+                ':val_tx_hash': tx_hash
             }
         )
         return response
