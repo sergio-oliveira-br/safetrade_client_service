@@ -28,7 +28,7 @@ class VoucherDynamoService:
         return response.get('Item', None)
 
 
-    def update_transaction_with_tx_hash(self, request):
+    def update_voucher_with_tx_hash(self, request):
         # extracting the data
         data_request = json.loads(request)
         tx_hash = data_request.get('tx_hash')

@@ -21,7 +21,7 @@ def update_voucher_with_tx_hash_view(request):
 
     # Get the Tx Hash from the request and sent to update service method to update the table with that
     voucher_service = VoucherDynamoService()
-    voucher_to_update_with_tx_hash = voucher_service.update_transaction_with_tx_hash(request.body)
+    voucher_to_update_with_tx_hash = voucher_service.update_voucher_with_tx_hash(request.body)
 
     is_voucher_success_updated = voucher_to_update_with_tx_hash['success']
     if is_voucher_success_updated:
