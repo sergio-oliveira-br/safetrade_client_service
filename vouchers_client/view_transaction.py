@@ -2,8 +2,8 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
-from vouchers_client.aws_sqs_hash_validation import SQSHashValidation
-from vouchers_client.aws_dynamo_service import VoucherDynamoService
+from vouchers_client.services.aws_sqs_hash_validation import SQSHashValidation
+from vouchers_client.services.aws_dynamo_service import VoucherDynamoService
 
 def view_voucher_checkout(request, voucher_id):
 

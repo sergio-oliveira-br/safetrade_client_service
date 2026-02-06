@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from vouchers_client.aws_dynamo_service import VoucherDynamoService
+from vouchers_client.services.aws_dynamo_service import VoucherDynamoService
 
 
 # Create your views here.
