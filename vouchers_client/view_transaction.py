@@ -17,7 +17,7 @@ def voucher_checkout_page(request, voucher_id):
 
 
 @csrf_protect
-def update_voucher_with_tx_hash_view(request):
+def voucher_checkout_update(request):
 
     # Get the Tx Hash from the request and sent to update service method to update the table with that
     voucher_service = VoucherDynamoService()
