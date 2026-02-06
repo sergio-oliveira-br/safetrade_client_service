@@ -9,7 +9,7 @@ REGION = 'eu-west-1'
 SQS_QUEUE_URL = 'https://sqs.eu-west-1.amazonaws.com/542672133770/payment-processing-queue'
 client = boto3.client('sqs', region_name=REGION)
 
-class SQSHashValidation:
+class SQSService:
 
     @staticmethod
     def send_hash_to_sqs() -> bool | None:

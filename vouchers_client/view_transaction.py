@@ -2,7 +2,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
-from vouchers_client.services.aws_sqs_service import SQSHashValidation
+from vouchers_client.services.aws_sqs_service import SQSService
 from vouchers_client.services.aws_dynamo_service import VoucherDynamoService
 
 def view_voucher_checkout(request, voucher_id):
@@ -25,7 +25,7 @@ def update_voucher_with_tx_hash_view(request):
 
     is_voucher_success_updated = voucher_to_update_with_tx_hash['success']
     if is_voucher_success_updated:
-        if SQSHashValidation.send_hash_to_sqs():
+        if SQSService.send_hash_to_sqs():
             response = JsonResponse({'message': 'Message sent'}, status=200)
         else:
             response = JsonResponse({'message': 'Message not sent'}, status=404)
