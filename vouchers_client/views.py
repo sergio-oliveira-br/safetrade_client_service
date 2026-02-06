@@ -1,6 +1,5 @@
 from django.shortcuts import render
-
-from vouchers_client.models import Voucher
+from vouchers_client.aws_dynamo_service import VoucherDynamoService
 
 
 # Create your views here.
@@ -9,7 +8,8 @@ def index_page(request):
 
 def showroom(request):
 
-    vouchers_table_list = Voucher.list_vouchers_by_status('Active')
+    voucher_service = VoucherDynamoService()
+    vouchers_table_list = voucher_service.list_vouchers_by_status(status='Active')
 
     context = {
         'vouchers_table_list': vouchers_table_list,
