@@ -18,15 +18,11 @@ async function sendHashToDjango(tx_hash) {
             })
         });
         if (response.ok) {
-            console.log("Voucher has been updated")
+            console.log("Voucher has been updated", response.json())
         }
 
         if (!response.ok) {
-            console.error(response.json())
-            }
-
-        else {
-            console.error("Error communicating with Django server.");
+            console.error("Error communicating with Django server.", response.json());
         }
     } catch (error) {
         console.error("Error in Fetch request:", error);
