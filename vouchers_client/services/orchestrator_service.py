@@ -17,8 +17,6 @@ class VoucherCheckoutOrchestrator:
     def handle_checkout_update(self, raw_data):
         try:
             raw_data = json.loads(raw_data)
-            print(raw_data)
-
             voucher_id = raw_data.get('voucher_id')
             voucher_tx_hash = raw_data.get('tx_hash')
 
