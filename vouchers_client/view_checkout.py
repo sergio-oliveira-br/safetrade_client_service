@@ -1,4 +1,4 @@
-# vouchers_client/view_transaction.py
+# vouchers_client/view_checkout.py
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
