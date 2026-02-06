@@ -1,6 +1,6 @@
 # vouchers_client/urls.py
 from django.urls import path
-from . import views, view_checkout
+from . import view_index, view_checkout
 
 urlpatterns = [
     # Index
