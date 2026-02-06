@@ -4,6 +4,8 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
 from vouchers_client.services.aws_sqs_service import SQSService
 from vouchers_client.services.aws_dynamo_service import VoucherDynamoService
+from vouchers_client.services.orchestrator_service import VoucherCheckoutOrchestrator
+
 
 def voucher_checkout_page(request, voucher_id):
 
@@ -18,21 +20,11 @@ def voucher_checkout_page(request, voucher_id):
 
 @csrf_protect
 def voucher_checkout_update(request):
+    # Instantiate the Orchestrator Service
+    orchestrator_service = VoucherCheckoutOrchestrator()
 
-    # Get the Tx Hash from the request and sent to update service method to update the table with that
-    voucher_service = VoucherDynamoService()
-    voucher_to_update_with_tx_hash = voucher_service.update_voucher_with_tx_hash(request.body)
+    # Use the instance to handle the business logic
+    response = orchestrator_service.handle_checkout_update(request.body)
+    status_code = 200 if response['status_code'] else 400
 
-    is_voucher_success_updated = voucher_to_update_with_tx_hash['success']
-    if is_voucher_success_updated:
-        if SQSService.send_hash_to_sqs():
-            response = JsonResponse({'message': 'Message sent'}, status=200)
-        else:
-            response = JsonResponse({'message': 'Message not sent'}, status=404)
-    else:
-        response = JsonResponse({'message': 'Voucher has not been updated' }, status=500)
-
-    return response
-
-
-
+    return JsonResponse(response, status=status_code)
