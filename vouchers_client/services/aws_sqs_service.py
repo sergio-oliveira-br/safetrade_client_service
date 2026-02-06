@@ -4,31 +4,22 @@ import json
 import logging
 import boto3
 
-# AWS Details
-REGION = 'eu-west-1'
-SQS_QUEUE_URL = 'https://sqs.eu-west-1.amazonaws.com/542672133770/payment-processing-queue'
-client = boto3.client('sqs', region_name=REGION)
-
 class SQSService:
 
-    @staticmethod
-    def send_hash_to_sqs() -> bool | None:
+    def __init__(self):
+        self.sqs_client = boto3.client('sqs', region_name='eu-west-1')
+        self.queue_url = 'https://sqs.eu-west-1.amazonaws.com/542672133770/payment-processing-queue'
 
-        if not client:
-            logging.error('The message can not be delivered, no SQS client configured')
-            return False
 
-        message_payload = {
-            'tx_hash': '0x999ab5ee766042609d931158bb28857b019e4cff3ebc787fb07228b747f25b9f'
-        }
-
+    def push_to_queue(self, payload: dict):
         try:
-            sqs_response = client.send_message(
-                QueueUrl=SQS_QUEUE_URL,
-                MessageBody=json.dumps(message_payload)
-            )
-            return True
+            sqs_response = self.sqs_client.send_message(QueueUrl=self.queue_url,
+                                                        MessageBody=json.dumps(payload),
+                                                        DelaySeconds=30)
+            return {'success': True,
+                    'message_id': sqs_response.get('MessageId') }
 
         except Exception as e:
-            logging.error(e)
-            return False
+            logging.error(f"Error while sending to queue: {str(e)}", exc_info=True)
+            return {'success': False,
+                    'error': str(e)}
