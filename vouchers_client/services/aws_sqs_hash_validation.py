@@ -1,4 +1,5 @@
-# vouchers_client/aws_sqs_hash_validation.py
+# vouchers_client/services/aws_sqs_hash_validation.py
+
 import json
 import logging
 import boto3
