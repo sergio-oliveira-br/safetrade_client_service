@@ -12,7 +12,7 @@ async function buy_voucher() {
         // https://docs.metamask.io/wallet/reference/provider-api#disconnect
         const transactionParameters = {
             from: account,
-            to: "0x29E70456CE821A009492FCB44232D67b042A1B49",
+            to: "0x29E70456ce821A009492FcB44232D67b042a1B49",
             value: "0",
             chainId: "0xaa36a7"
         }
