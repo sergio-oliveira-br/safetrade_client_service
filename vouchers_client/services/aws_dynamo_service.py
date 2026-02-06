@@ -36,10 +36,10 @@ class VoucherDynamoService:
 
         # validations
         if voucher_id is None:
-            return JsonResponse({'message': 'voucher_id is required'}, status=422)
+            return {"success": False, "error": "voucher_id is required"}
 
         if tx_hash is None:
-            return JsonResponse({'message': 'tx_hash is required'}, status=422)
+            return {"success": False, "error": "tx_hash is required"}
 
         # updating
         try:
