@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_protect
 from vouchers_client.services.aws_sqs_service import SQSService
 from vouchers_client.services.aws_dynamo_service import VoucherDynamoService
 
-def view_voucher_checkout(request, voucher_id):
+def voucher_checkout_page(request, voucher_id):
 
     voucher_service = VoucherDynamoService()
     voucher = voucher_service.find_voucher_by_id(voucher_id)
