@@ -32,24 +32,40 @@
                 {% endif %}
 
                 <hr>
+                <h6 class="text-muted">Details</h6>
+                Item selected:
+                {{ voucher.voucher_id }}
 
-                <div class="timeline-log">
-                    <h6 class="text-muted">Current Status</h6>
-                    <div class="step {% if voucher.voucher_status %}completed{% endif %}">
-                        <i class="bi bi-check-circle"></i> Item selected
-                    </div>
+                <br>
 
-                    <div class="step {% if voucher.voucher_tx_hash %}completed{% endif %}">
-                        <i class="bi bi-cpu"></i>
-                        Transaction:
-                        {% if voucher.voucher_tx_hash %}
-                            <a href="https://sepolia.etherscan.io/tx/{{ voucher.voucher_tx_hash }}" target="_blank">Check on Etherscan</a>
-                        {% else %}
-                            <span class="text-muted">Waiting for payment...</span>
-                        {% endif %}
-                    </div>
-                </div>
+                Status:
+                <strong>{{ voucher.voucher_status }}</strong>
+
+                <br>
+
+                <i class="bi bi-cpu"></i>
+                Transaction:
+                {% if voucher.voucher_tx_hash %}
+                    <a href="https://sepolia.etherscan.io/tx/{{ voucher.voucher_tx_hash }}" target="_blank">Check on Etherscan</a>
+                {% else %}
+                    <span class="text-muted">Waiting for payment...</span>
+                {% endif %}
             </div>
         </div>
     </div>
 </div>
+
+<script>
+
+    const statusAtual = "{{ voucher.voucher_status }}";
+
+    if (statusAtual === 'Pending') {
+        setTimeout(function() {
+            location.reload();
+        }, 5000);
+    }
+
+    if (statusAtual === 'Sold'){
+        alert('Thanks for your patience! \nYour payment has been confirmed on ETH')
+    }
+</script>
