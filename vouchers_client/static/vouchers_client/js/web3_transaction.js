@@ -24,6 +24,7 @@ async function buy_voucher() {
         alert("We are processing your payment. Please wait few seconds!")
 
         await sendHashToDjango(tx_hash)
+        reload_page();
 
     } catch (error) {
         console.error(error)
