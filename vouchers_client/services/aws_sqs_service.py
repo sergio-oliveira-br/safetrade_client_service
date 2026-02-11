@@ -15,7 +15,7 @@ class SQSService:
         try:
             sqs_response = self.sqs_client.send_message(QueueUrl=self.queue_url,
                                                         MessageBody=json.dumps(payload),
-                                                        DelaySeconds=30)
+                                                        DelaySeconds=7)
             return {'success': True,
                     'message_id': sqs_response.get('MessageId') }
 
