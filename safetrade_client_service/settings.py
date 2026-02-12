@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "vouchers_client"
+    "vouchers_client",
+    "storages"
 ]
 
 MIDDLEWARE = [
@@ -116,4 +118,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = "static/"
+# STATIC_URL = "static/"
+
+AWS_STORAGE_BUCKET_NAME = "zappa-static-safetrade-client-service-deploy"
+AWS_S3_REGION_NAME = "eu-west-1"
+AWS_DEFAULT_ACL = None
+AWS_QUERYSTRING_AUTH = False
+
+AWS_S3_OBJECT_PARAMETERS = {
+    "CacheControl": "max-age=86400",
+}
+
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+    },
+}
+
+STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
