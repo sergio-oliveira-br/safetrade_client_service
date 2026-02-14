@@ -1,6 +1,6 @@
 # vouchers_client/view_checkout.py
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_http_methods
 
@@ -30,7 +30,6 @@ def voucher_checkout_update(request):
     orchestrator_service = VoucherCheckoutOrchestrator()
 
     # Use the instance to handle the business logic
-    response = orchestrator_service.handle_checkout_update(voucher_id, voucher_tx_hash)
-    status_code = 200 if response['status_code'] else 400
+    orchestrator_service.handle_checkout_update(voucher_id, voucher_tx_hash)
 
-    return render(request, 'core/voucher_checkout.html', context={'voucher': voucher_id})
+    return redirect('voucher_checkout', voucher_id=voucher_id)
