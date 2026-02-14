@@ -14,19 +14,16 @@ class VoucherCheckoutOrchestrator:
         self.db_service = VoucherDynamoService()
         self.sqs_service = SQSService()
 
-    def handle_checkout_update(self, raw_data):
-        try:
-            raw_data = json.loads(raw_data)
-            voucher_id = raw_data.get('voucher_id')
-            voucher_tx_hash = raw_data.get('tx_hash')
+    def handle_checkout_update(self, voucher_id, voucher_tx_hash):
 
+        try:
             if not voucher_tx_hash or not voucher_id:
                 return {'success': False,
                         'message': 'Missing voucher_tx_hash or voucher_id',
                         'status_code': 400 }
 
             # first step: send the tx_hash to dynamodb and change the voucher status
-            dynamoDB_response = self.db_service.update_voucher_with_tx_hash(raw_data)
+            dynamoDB_response = self.db_service.update_voucher_with_tx_hash(voucher_id=voucher_id, tx_hash=voucher_tx_hash)
 
             if not dynamoDB_response['success']:
                 return {'success': False,
