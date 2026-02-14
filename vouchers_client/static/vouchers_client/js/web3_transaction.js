@@ -26,6 +26,12 @@ async function sendTransactionToMetaMask(account) {
 function updateUI(tx_hash) {
     alert("We are processing your payment. Please wait few seconds!");
     console.log("Transaction Hash:", tx_hash);
+
+    const txDisplay = document.getElementById("tx_hash_display");
+    const txInput = document.getElementById("tx_hash_input");
+
+    if (txDisplay) txDisplay.innerText = tx_hash;
+    if (txInput) txInput.value = tx_hash;
 }
 
 async function buyVoucher() {
