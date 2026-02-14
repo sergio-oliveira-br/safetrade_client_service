@@ -1,6 +1,7 @@
 // vouchers_client/static/vouchers_client/js/web3_transaction.js
 
 const btn_by_voucher = document.getElementById('buyVoucher')
+const btn_check_tx = document.getElementById('checkTx')
 
 async function connectWallet() {
     const accounts = await window.ethereum.request({
@@ -24,8 +25,10 @@ async function sendTransactionToMetaMask(account) {
 }
 
 function updateUI(tx_hash) {
-    alert("We are processing your payment. Please wait few seconds!");
+    alert("Your payment has been successfully recorded in Etherscan!");
     console.log("Transaction Hash:", tx_hash);
+    btn_by_voucher.style.display = 'none';
+    btn_check_tx.style.display = 'Block';
 
     const txDisplay = document.getElementById("tx_hash_display");
     const txInput = document.getElementById("tx_hash_input");
