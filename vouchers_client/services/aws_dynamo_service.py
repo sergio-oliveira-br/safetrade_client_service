@@ -28,11 +28,7 @@ class VoucherDynamoService:
         return response.get('Item', None)
 
 
-    def update_voucher_with_tx_hash(self, data):
-        # extracting the data
-
-        tx_hash = data.get('tx_hash')
-        voucher_id = data.get('voucher_id')
+    def update_voucher_with_tx_hash(self, voucher_id, tx_hash):
 
         # validations
         if voucher_id is None:
