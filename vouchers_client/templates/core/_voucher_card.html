@@ -31,6 +31,16 @@
                     </div>
                 {% endif %}
 
+                <form action="{% url 'update_voucher_table' %}" method="post">
+                    {% csrf_token %}
+
+                    <input type="hidden" name="voucher_id" value="{{ voucher.voucher_id }}">
+                    <input type="hidden" id="tx_hash_input" name="tx_hash_input">
+
+                    <button type="submit" class="btn btn-success btn-lg" id="checkTx" style="display: none"> Validate Your Transaction</button>
+
+                </form>
+
                 <hr>
                 <h6 class="text-muted">Details</h6>
                 Item selected:
@@ -38,49 +48,14 @@
 
                 <br>
 
-                <form action="{% url 'update_voucher_table' %}" method="post">
-                    {% csrf_token %}
-                    <p>TX Hash: <span id="tx_hash_display"></span></p>
-
-                    <input type="hidden" name="voucher_id" value="{{ voucher.voucher_id }}">
-                    <input type="hidden" id="tx_hash_input" name="tx_hash_input">
-
-                    <button type="submit"> Validate Your Transaction</button>
-
-                </form>
-
-
-
-                Status:
-                <strong>{{ voucher.voucher_status }}</strong>
-
-                <br>
-
-
-
                 <i class="bi bi-cpu"></i>
                 Transaction:
                 {% if voucher.voucher_tx_hash %}
                     <a href="https://sepolia.etherscan.io/tx/{{ voucher.voucher_tx_hash }}" target="_blank">Check on Etherscan</a>
                 {% else %}
-                    <span class="text-muted">Waiting for payment...</span>
+                    <span id="paymentStatus" class="text-muted">Waiting for payment...</span>
                 {% endif %}
             </div>
         </div>
     </div>
 </div>
-
-<script>
-
-    const statusAtual = "{{ voucher.voucher_status }}";
-
-    if (statusAtual === 'Pending') {
-        setTimeout(function() {
-            location.reload();
-        }, 5000);
-    }
-
-    if (statusAtual === 'Sold'){
-        alert('Thanks for your patience! \nYour payment has been confirmed on ETH')
-    }
-</script>
