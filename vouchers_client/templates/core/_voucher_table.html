@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for v in vouchers_table_list %}
+                {% for v in page_obj %}
                 <tr>
                     <td><small class="text-muted">{{ v.voucher_id }}</small></td>
                     <td><strong>{{ v.voucher_description }}</strong></td>
