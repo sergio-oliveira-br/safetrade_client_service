@@ -40,11 +40,11 @@ class VoucherCheckoutOrchestrator:
 
             if not sqs_response['success']:
                 return {'success': False,
-                        'message': 'It was possible send the hash to SQS',
+                        'message': 'Sorry! It was not possible send the hash to SQS',
                         'status_code': 400 }
 
             return {'success': True,
-                    'message': 'Flow Completed',
+                    'message': 'Flow completed successfully',
                     'message_id': sqs_response.get('message_id'),
                     'status_code': 200}
 
