@@ -37,7 +37,7 @@
                     <input type="hidden" name="voucher_id" value="{{ voucher.voucher_id }}">
                     <input type="hidden" id="tx_hash_input" name="tx_hash_input">
 
-                    <button type="submit" class="btn btn-success btn-lg" id="checkTx" style="display: none"> Validate Your Transaction</button>
+                    <button type="submit" class="btn btn-success btn-lg" id="checkTx" style="display: none"> Get Your QRCode</button>
 
                 </form>
 
@@ -52,6 +52,9 @@
                 Transaction:
                 {% if voucher.voucher_tx_hash %}
                     <a href="https://sepolia.etherscan.io/tx/{{ voucher.voucher_tx_hash }}" target="_blank">Check on Etherscan</a>
+                    <br>
+                     QRcode:
+                    <a href="{{ voucher.voucher_qrcode_address }}">Download</a>
                 {% else %}
                     <span id="paymentStatus" class="text-muted">Waiting for payment...</span>
                 {% endif %}
